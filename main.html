@@ -1093,6 +1093,10 @@ footer strong{display:block;font:italic 900 22px Montserrat,"A2Z","Pretendard Va
 <div class="toast" id="toast" role="status"></div>
 
 <script>
+// 카톡 등 앱 안 브라우저가 글자만 키우는 경우(글자 크기 설정)를 감지해서 원래 비율로 되돌린다
+(function(){try{var t=document.createElement('span');t.style.cssText='position:absolute;left:-9999px;top:0;visibility:hidden;font:100px/1 monospace';t.textContent='M';document.body.appendChild(t);var r=t.getBoundingClientRect().height/100;t.remove();if(r>1.04&&r<3){document.documentElement.style.zoom=(1/r).toFixed(3)}}catch(e){}})();
+</script>
+<script>
 {
 const C={정치:'#ff8a5c',경제:'#ffd166',사회:'#7ee0b0',국제:'#b69cff',문화:'#ff7eb6',오피니언:'#cfd6e6'};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

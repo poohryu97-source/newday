@@ -1008,6 +1008,32 @@ footer strong{display:block;font:italic 900 22px Montserrat,"KOHIBaeum",sans-ser
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--bg);font-weight:800;padding:12px 20px;border-radius:999px;transition:.25s;pointer-events:none;z-index:9}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .empty{color:var(--mut);padding:40px 0}
+.rank{list-style:none;margin:4px 0 0;padding:0;text-align:left}
+.rrow a{display:grid;grid-template-columns:30px 66px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 2px;border-bottom:1px solid var(--line)}
+.rn{font:italic 900 22px/1 Montserrat,sans-serif;color:var(--sky);text-align:center}
+.rthumb{width:66px;height:48px;border-radius:9px;overflow:hidden;background:#2a1a16;display:block}
+.rthumb img,.ri img{width:100%;height:100%;object-fit:cover;display:block}
+.rtt{font-weight:800;font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all}
+.rmeta{font:400 11.5px/1.4 "Pretendard Variable",Pretendard,sans-serif;color:var(--mut);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dl{font:700 11px "Pretendard Variable",Pretendard,sans-serif;white-space:nowrap;min-width:30px;text-align:right}
+.dl.up{color:#7ee0b0}.dl.dn{color:#8a7f7b}.dl.nw{color:#ffd166}
+.secs{text-align:left}
+.sec{margin-top:34px}
+.shd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.shd h3{font:800 19px "KOHIBaeum",sans-serif;margin:0;display:flex;align-items:center;gap:9px}
+.shd h3::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}
+.more{background:none;border:0;color:var(--sky);font:600 13px "Pretendard Variable",Pretendard,sans-serif;cursor:pointer;min-height:40px;padding:0 4px}
+.more:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:0 max(5vw,16px) 6px;scroll-padding:0 max(5vw,16px)}
+.rail::-webkit-scrollbar{display:none}
+.rc{flex:none;width:min(64vw,250px);scroll-snap-align:start;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);display:flex;flex-direction:column}
+.ri{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#2a0d06,#7a1e0a);overflow:hidden;display:block}
+.rb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.rb .rtt{-webkit-line-clamp:3;font-size:14px}
+.sec.open .rail{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));overflow:visible;margin:0;padding:0}
+.sec.open .rc{width:auto}
+@media(min-width:900px){.rail{margin:0;padding:0 0 6px}}
+
 .bgfx{position:absolute;left:0;right:0;top:0;height:760px;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(70% 36% at 20% 6%,rgba(255,74,28,.85),transparent 72%),radial-gradient(60% 32% at 85% 18%,rgba(255,122,69,.6),transparent 72%),radial-gradient(70% 28% at 50% 42%,rgba(255,176,112,.28),transparent 78%)}.bgfx::before{content:"";position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}.bgfx::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(transparent,var(--bg) 85%)}.clock,.ticker,.hero,main{position:relative;z-index:1}
 .hero .wrap{text-align:left}.hrow{display:flex;justify-content:center;align-items:center;gap:clamp(16px,5vw,28px);margin-top:14px}.hrow .brand{margin:0;flex:none}.hside{display:flex;flex-direction:column;align-items:flex-start}.hside .contact{margin-top:0}.hero .contact{align-items:flex-start}.hero .tag{text-align:center;margin-top:clamp(56px,15vw,84px)}
 .clock{padding:16px 16px 12px;text-align:center;color:#fff;font:500 15px/1.2 "Pretendard Variable",Pretendard,system-ui,sans-serif;white-space:nowrap}
@@ -1041,12 +1067,15 @@ footer strong{display:block;font:italic 900 22px Montserrat,"KOHIBaeum",sans-ser
 </header>
 
 <main class="wrap">
-  <h2 style="margin-top:clamp(36px,9vw,56px)">TRENDING NOW</h2>
+  <h2 style="margin-top:clamp(36px,9vw,56px)">TOP 10</h2>
   <p class="tag" style="margin:14px auto 0;color:#fff"><span class="nw">지금 가장 많이 본 뉴스, 실시간으로 확인하세요.</span></p>
   <p class="upd" id="upd">기사를 불러오는 중입니다</p>
-  <div class="chips" id="chips" role="toolbar" aria-label="분야 선택"></div>
   <div id="topbox"></div>
-  <div class="grid" id="grid"></div>
+  <ol class="rank" id="rank"></ol>
+  <div id="followbox"></div>
+  <h2 style="margin-top:clamp(48px,12vw,72px)">BY CATEGORY</h2>
+  <p class="upd" style="margin-top:8px">분야별로 지금 많이 본 뉴스</p>
+  <div class="secs" id="secs"></div>
 
   <section class="join">
     <h3>Start your day<br>with NEWDAY</h3>
@@ -1066,33 +1095,29 @@ const ago=iso=>{const m=Math.round((Date.now()-new Date(iso))/60000);if(!(m>=0))
 const fmt=iso=>{const d=new Date(iso);return isNaN(d)?'':d.toLocaleString('ko-KR',{month:'long',day:'numeric',weekday:'short',hour:'numeric',minute:'2-digit'})};
 const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
 const ck=document.getElementById('clock');const tick=()=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:true}).formatToParts(new Date()).map(x=>[x.type,x.value]));const w=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',weekday:'short'}).format(new Date());ck.textContent=`${p.year}-${p.month}-${p.day} ${w} ${p.hour}:${p.minute}${p.dayPeriod}(KST)`};tick();setInterval(tick,20000);
-const chips=document.getElementById('chips'),grid=document.getElementById('grid'),topbox=document.getElementById('topbox'),upd=document.getElementById('upd');
-let N=[],cats=['전체'],cur='전체';
-const vr=n=>cur==='전체'?n.rank:n.crank;
-const ph=(n,i)=>`<span class="ph">${vr(n)?`<span class="rk">${vr(n)}위</span>`:''}${n.img?`<img src="${esc(n.img)}" alt="" decoding="async" ${i<5?'loading="eager"'+(i<1?' fetchpriority="high"':''):'loading="lazy"'} onerror="this.parentNode.innerHTML='<b>${esc(n.c)}</b>'">`:`<b>${esc(n.c)}</b>`}</span>`;
-const meta=n=>`<div class="meta"><span>${esc(n.s)}</span><span class="dot"></span><span class="ago">${ago(n.at)}</span><button class="share" data-u="${esc(n.u)}" aria-label="기사 링크 복사">${ICON}</button></div>`;
-const render=()=>{
-  chips.innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cur}" data-c="${c}">${c}</button>`).join('');
-  const hasR=N.some(n=>n.rank);
-  const L=cur==='전체'?N.filter(n=>!hasR||n.rank).sort((a,b)=>(a.rank||999)-(b.rank||999)):N.filter(n=>n.c===cur).sort((a,b)=>(a.crank||999)-(b.crank||999)||(a.rank||999)-(b.rank||999)||new Date(b.at)-new Date(a.at));
-  if(!L.length){topbox.innerHTML='';grid.innerHTML='<p class="empty">이 분야의 기사가 아직 없습니다.</p>';return}
-  const t=L.find(n=>n.img)||L[0];
-  topbox.innerHTML=`<a class="top" href="${esc(t.u)}" rel="noopener">${ph(t,0)}<div class="txt"><span class="cat" style="--c:${C[t.c]||'#cfd6e6'}">${esc(t.c)}</span><div class="title" style="margin-top:12px">${esc(t.t)}</div><div class="meta"><span>${esc(t.s)}</span><span class="dot"></span><span class="ago">${ago(t.at)}</span></div></div></a>`;
-  const FOLLOW=`<aside class="follow"><h3>Wake up<br>informed</h3><p><span class="nw">인스타그램 <em>@_newday_0</em>에서</span><br><span class="nw">매일 아침 뉴스 정리를 받아보세요.</span></p><a class="pbtn" href="https://www.instagram.com/_newday_0/" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@_newday_0 Follow</a></aside>`;
-  const cards=L.filter(n=>n!==t).map((n,i)=>`<article class="card" style="--c:${C[n.c]||'#cfd6e6'}"><a href="${esc(n.u)}" rel="noopener" tabindex="-1" aria-hidden="true">${ph(n,i+1)}</a><div class="body"><span class="cat">${esc(n.c)}</span><a class="title" href="${esc(n.u)}" rel="noopener">${esc(n.t)}</a>${meta(n)}</div></article>`);
-  if(cards.length>=4)cards.splice(Math.min(6,cards.length-1),0,FOLLOW);
-  grid.innerHTML=cards.join('');
+const upd=document.getElementById('upd'),topbox=document.getElementById('topbox'),rank=document.getElementById('rank'),secs=document.getElementById('secs'),fb=document.getElementById('followbox');
+const img=(n,i,eager)=>n.img?`<img src="${esc(n.img)}" alt="" decoding="async" ${eager?'loading="eager"':'loading="lazy"'} onerror="this.remove()">`:'';
+const dl=n=>n.delta===undefined?'<span class="dl"></span>':n.delta==='new'?'<span class="dl nw">NEW</span>':(typeof n.delta==='number'&&n.delta>0)?`<span class="dl up">▲${n.delta}</span>`:(typeof n.delta==='number'&&n.delta<0)?`<span class="dl dn">▼${-n.delta}</span>`:'<span class="dl dn">-</span>';
+const FOLLOW=`<aside class="follow" style="margin-top:36px"><h3>Wake up<br>informed</h3><p><span class="nw">인스타그램 <em>@_newday_0</em>에서</span><br><span class="nw">매일 아침 뉴스 정리를 받아보세요.</span></p><a class="pbtn" href="https://www.instagram.com/_newday_0/" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@_newday_0 Follow</a></aside>`;
+const ORDER=['정치','경제','사회','국제','문화'];
+const render=N=>{
+  const R=N.filter(n=>n.rank).sort((a,b)=>a.rank-b.rank);
+  const T=(R.length?R:N).slice(0,10);
+  if(!T.length){rank.innerHTML='<li class="empty">기사가 아직 없습니다.</li>';return}
+  const t=T[0];
+  topbox.innerHTML=`<a class="top" href="${esc(t.u)}" rel="noopener"><span class="ph"><span class="rk">1위</span>${img(t,0,true)}</span><div class="txt"><span class="cat" style="--c:${C[t.c]||'#cfd6e6'}">${esc(t.c)}</span><div class="title" style="margin-top:12px">${esc(t.t)}</div><div class="meta"><span>${esc(t.s)}</span><span class="dot"></span><span class="ago">${ago(t.at)}</span>${t.delta==='new'?'<span class="dl nw">NEW</span>':''}</div></div></a>`;
+  rank.innerHTML=T.slice(1).map((n,i)=>`<li class="rrow"><a href="${esc(n.u)}" rel="noopener"><span class="rn">${i+2}</span><span class="rthumb">${img(n,i,i<4)}</span><span><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · ${ago(n.at)}</span></span>${dl(n)}</a></li>`).join('');
+  fb.innerHTML=FOLLOW;
+  const cats=ORDER.filter(c=>N.some(n=>n.c===c));
+  secs.innerHTML=cats.map(c=>{const L=N.filter(n=>n.c===c).sort((a,b)=>(a.crank||999)-(b.crank||999)||(a.rank||999)-(b.rank||999)).slice(0,15);
+    return `<section class="sec" style="--c:${C[c]}"><div class="shd"><h3>${c}</h3><button class="more" aria-expanded="false">전체보기 ›</button></div><div class="rail">${L.map((n,i)=>`<a class="rc" href="${esc(n.u)}" rel="noopener"><span class="ri">${n.crank?`<span class="rk">${n.crank}위</span>`:''}${img(n,i,false)}</span><span class="rb"><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · ${ago(n.at)}</span></span></a>`).join('')}</div></section>`}).join('');
 };
-chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;cur=b.dataset.c;try{localStorage.setItem('nd-cat',cur)}catch(e){}render()});
-const toast=document.getElementById('toast');
-grid.addEventListener('click',async e=>{const b=e.target.closest('.share');if(!b)return;let ok=true;try{await navigator.clipboard.writeText(b.dataset.u)}catch(err){ok=false}toast.textContent=ok?'기사 링크를 복사했어요':'복사가 막혀 있어요. 제목을 길게 눌러 주세요';toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1800)});
+secs.addEventListener('click',e=>{const b=e.target.closest('.more');if(!b)return;const s=b.closest('.sec');const o=s.classList.toggle('open');b.textContent=o?'접기 ‹':'전체보기 ›';b.setAttribute('aria-expanded',o)});
 fetch('news.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
-  N=(d.items||[]).slice().sort((a,b)=>(a.rank&&b.rank)?a.rank-b.rank:new Date(b.at)-new Date(a.at));
-  upd.textContent=d.updated?fmt(d.updated)+' 업데이트':'';
-  cats=['전체',...Object.keys(C).filter(c=>N.some(n=>n.c===c))];
-  try{const s=localStorage.getItem('nd-cat');if(cats.includes(s))cur=s}catch(e){}
-  const tr=document.getElementById('track');tr.innerHTML=N.filter(n=>n.rank||!N.some(x=>x.rank)).slice(0,12).map(n=>`<a href="${esc(n.u)}" rel="noopener">${esc(n.t)}</a><i></i>`).join('');requestAnimationFrame(()=>tr.style.setProperty('--dur',Math.max(12,(tr.scrollWidth)/110)+'s'));
-  render();
+  const N=d.items||[];
+  upd.textContent=d.updated?fmt(d.updated)+' 업데이트 · 1시간마다 갱신':'';
+  const tr=document.getElementById('track');tr.innerHTML=N.filter(n=>n.rank).sort((a,b)=>a.rank-b.rank).slice(0,12).map(n=>`<a href="${esc(n.u)}" rel="noopener">${esc(n.t)}</a><i></i>`).join('');requestAnimationFrame(()=>tr.style.setProperty('--dur',Math.max(12,(tr.scrollWidth)/110)+'s'));
+  render(N);
 }).catch(()=>{upd.textContent='기사를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'});
 }
 </script>

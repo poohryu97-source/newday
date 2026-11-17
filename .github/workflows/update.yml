@@ -21,7 +21,7 @@ jobs:
       - name: 기사·사진 받기
         run: |
           rm -rf out
-          timeout 600 python3 -I tools/update.py out 30 15
+          timeout 600 python3 -I tools/update.py out 30 15 news.json
           python3 -c "import json;d=json.load(open('out/news.json'));n=len(d['items']);print(n,'articles');assert n>=20"
       - name: 사이트 파일 교체
         run: |

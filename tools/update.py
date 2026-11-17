@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """뉴데이 사이트 업데이트 도구 (많이 본 뉴스).
-사용: python3 -I update.py OUTDIR [전체 개수=30] [분야별 개수=15]
+사용: python3 -I update.py OUTDIR [전체 개수=30] [분야별 개수=15] [이전 news.json]
 네이트 뉴스 '많이 본 뉴스' 시사 종합 랭킹과 정치·경제·사회·국제 분야별 랭킹을 읽고, 각 기사의 제목·분야·언론사·전송시각·대표사진을 모아
 OUTDIR/news.json 과 OUTDIR/img/*.jpg 를 만든다. 사진을 못 받은 기사는 뺀다.
 """
@@ -98,7 +98,7 @@ def work(vid, out):
         print("skip", vid, e, file=sys.stderr)
     return None
 
-def main(out, n=30, per=15):
+def main(out, n=30, per=15, prev_path=None):
     os.makedirs(os.path.join(out, "img"), exist_ok=True)
     overall = ids_of("sisa")[: n + 8]
     sec = {c: ids_of(sc)[: per + 4] for sc, c in SECTIONS.items()}
@@ -124,6 +124,19 @@ def main(out, n=30, per=15):
             r += 1
             items[v]["rank"] = r
     keep = [it for it in items.values() if "rank" in it or "crank" in it]
+    # 지난 업데이트와 비교해 순위 변동(▲▼/NEW) 계산
+    prev = {}
+    if prev_path and os.path.exists(prev_path):
+        try:
+            for it in json.load(open(prev_path, encoding="utf-8")).get("items", []):
+                if it.get("rank"):
+                    prev[it["u"]] = it["rank"]
+        except Exception as e:
+            print("prev read fail", e, file=sys.stderr)
+    if prev:
+        for it in keep:
+            if "rank" in it:
+                it["delta"] = (prev[it["u"]] - it["rank"]) if it["u"] in prev else "new"
     keep.sort(key=lambda it: (it.get("rank", 999), it.get("crank", 999)))
     data = {"updated": datetime.now(KST).isoformat(timespec="minutes"), "source": "네이트 뉴스 많이 본 뉴스", "items": keep}
     json.dump(data, open(os.path.join(out, "news.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
@@ -135,4 +148,4 @@ def main(out, n=30, per=15):
     print(f"{len(keep)} articles with photos; overall {r}; by section {dict(Counter(i['c'] for i in keep))}")
 
 if __name__ == "__main__":
-    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 30, int(sys.argv[3]) if len(sys.argv) > 3 else 15)
+    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 30, int(sys.argv[3]) if len(sys.argv) > 3 else 15, sys.argv[4] if len(sys.argv) > 4 else None)

@@ -1077,7 +1077,7 @@ footer strong{display:block;font:italic 900 22px Montserrat,"KOHIBaeum",sans-ser
   <div id="topbox"></div>
   <ol class="rank" id="rank"></ol>
   <h2 style="margin-top:clamp(48px,12vw,72px)">BY CATEGORY</h2>
-  <p class="upd" style="margin-top:8px">분야별로 지금 많이 본 뉴스</p>
+  <p class="upd" style="margin-top:8px">분야별 방금 올라온 뉴스</p>
   <div class="secs" id="secs"></div>
 
   <section class="join">
@@ -1110,9 +1110,10 @@ const render=N=>{
   const t=T[0];
   topbox.innerHTML=`<a class="top" href="${esc(t.u)}" rel="noopener"><span class="ph"><span class="rk">1위</span>${img(t,0,true)}</span><div class="txt"><span class="cat" style="--c:${C[t.c]||'#cfd6e6'}">${esc(t.c)}</span><div class="title" style="margin-top:12px">${esc(t.t)}</div><div class="meta"><span>${esc(t.s)}</span><span class="dot"></span><span class="ago">${ago(t.at)}</span>${t.delta==='new'?'<span class="dl nw">NEW</span>':''}</div></div></a>`;
   rank.innerHTML=T.slice(1).map((n,i)=>`<li class="rrow"><a href="${esc(n.u)}" rel="noopener"><span class="rn">${i+2}</span><span class="rthumb">${img(n,i,i<4)}</span><span><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · ${ago(n.at)}</span></span>${dl(n)}</a></li>`).join('');
-  const cats=ORDER.filter(c=>N.some(n=>n.c===c));
-  secs.innerHTML=cats.map(c=>{const L=N.filter(n=>n.c===c).sort((a,b)=>(a.crank||999)-(b.crank||999)||(a.rank||999)-(b.rank||999)).slice(0,15);
-    return `<section class="sec" style="--c:${C[c]}"><div class="shd"><h3>${c}</h3><button class="more" aria-expanded="false">전체보기 ›</button></div><div class="rail">${L.map((n,i)=>`<a class="rc" href="${esc(n.u)}" rel="noopener"><span class="ri">${n.crank?`<span class="rk">${n.crank}위</span>`:''}${img(n,i,false)}</span><span class="rb"><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · ${ago(n.at)}</span></span></a>`).join('')}</div></section>`}).join('');
+  const hasL=N.some(n=>n.lc);const cof=n=>hasL?n.lc:n.c;
+  const cats=ORDER.filter(c=>N.some(n=>cof(n)===c));
+  secs.innerHTML=cats.map(c=>{const L=N.filter(n=>cof(n)===c).sort((a,b)=>hasL?(a.lrank-b.lrank):((a.crank||999)-(b.crank||999)||(a.rank||999)-(b.rank||999))).slice(0,15);
+    return `<section class="sec" style="--c:${C[c]}"><div class="shd"><h3>${c}</h3><button class="more" aria-expanded="false">전체보기 ›</button></div><div class="rail">${L.map((n,i)=>`<a class="rc" href="${esc(n.u)}" rel="noopener"><span class="ri">${hasL?((Date.now()-new Date(n.at))<600000?'<span class="rk">방금</span>':''):(n.crank?`<span class="rk">${n.crank}위</span>`:'')}${img(n,i,false)}</span><span class="rb"><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · <b style="color:var(--sky);font-weight:600">${ago(n.at)}</b></span></span></a>`).join('')}</div></section>`}).join('');
 };
 secs.addEventListener('click',e=>{const b=e.target.closest('.more');if(!b)return;const s=b.closest('.sec');const o=s.classList.toggle('open');b.textContent=o?'접기 ‹':'전체보기 ›';b.setAttribute('aria-expanded',o)});
 fetch('news.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{

@@ -41,11 +41,12 @@ NAVER = {"100": "정치", "101": "경제", "102": "사회", "104": "국제"}
 def naver_ids(sid):
     for _ in range(3):
         try:
-            s = text(get(f"https://news.naver.com/main/list.naver?mode=LSD&mid=sec&sid1={sid}"))
             out = []
-            for u in re.findall(r'https?://n\.news\.naver\.com/mnews/article/\d+/\d+', s):
-                if u not in out:
-                    out.append(u)
+            for pg in (1, 2, 3):
+                s = text(get(f"https://news.naver.com/main/list.naver?mode=LSD&mid=sec&sid1={sid}&page={pg}"))
+                for u in re.findall(r'https?://n\.news\.naver\.com/mnews/article/\d+/\d+', s):
+                    if u not in out:
+                        out.append(u)
             if out:
                 return out
         except Exception as e:
@@ -159,8 +160,8 @@ def work(vid, out, need_img=True):
 def main(out, n=30, per=15, prev_path=None):
     os.makedirs(os.path.join(out, "img"), exist_ok=True)
     overall = ids_of("sisa")[: n + 8]
-    latest_urls = {c: naver_ids(sid)[: per + 25] for sid, c in NAVER.items()}
-    with ThreadPoolExecutor(8) as ex:
+    latest_urls = {c: naver_ids(sid)[: per + 30] for sid, c in NAVER.items()}
+    with ThreadPoolExecutor(12) as ex:
         top_res = dict(zip(overall, ex.map(lambda v: work(v, out, True), overall)))
         jobs = [(u, c) for c, l in latest_urls.items() for u in l]
         lat_res = list(ex.map(lambda j: naver_work(j[0], j[1], out), jobs))

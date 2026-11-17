@@ -25,10 +25,13 @@ jobs:
           python3 -c "import json;d=json.load(open('out/news.json'));n=len(d['items']);print(n,'articles');assert n>=20"
       - name: 사이트 파일 교체
         run: |
-          rm -rf img
-          mv out/img img
+          mkdir -p img
+          cp -n out/img/* img/ 2>/dev/null || true
+          cp news.json prev.json 2>/dev/null || echo '{"items":[]}' > prev.json
           mv out/news.json news.json
-          rm -rf out
+          # 이번 + 지난 업데이트에서 쓰는 사진만 남기고 정리 (예전 화면을 보고 있는 사람도 사진이 깨지지 않게)
+          python3 -c "import json,os;u={i['img'].split('/')[1] for f in ('news.json','prev.json') for i in json.load(open(f)).get('items',[]) if i.get('img')};[os.remove('img/'+x) for x in os.listdir('img') if x not in u]"
+          rm -rf out prev.json
       - name: 저장
         run: |
           git config user.name "newday-bot"

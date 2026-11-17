@@ -1122,7 +1122,7 @@ const render=N=>{
     return `<section class="sec" style="--c:${C[c]}"><div class="shd"><h3>${c}</h3><button class="more" aria-expanded="false">전체보기 ›</button></div><div class="rail">${L.map((n,i)=>`<a class="rc" href="${esc(n.u)}" rel="noopener"><span class="ri">${hasL?((Date.now()-new Date(n.at))<600000?'<span class="rk">방금</span>':''):(n.crank?`<span class="rk">${n.crank}위</span>`:'')}${img(n,i,false)}</span><span class="rb"><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · <b style="color:var(--sky);font-weight:600">${ago(n.at)}</b></span></span></a>`).join('')}</div></section>`}).join('');
 };
 secs.addEventListener('click',e=>{const b=e.target.closest('.more');if(!b)return;const s=b.closest('.sec');const o=s.classList.toggle('open');b.textContent=o?'접기 ‹':'전체보기 ›';b.setAttribute('aria-expanded',o)});
-fetch('news.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+fetch('news.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{
   const N=d.items||[];
   upd.textContent=d.updated?fmt(d.updated)+' 업데이트 · 1시간마다 갱신':'';
   const tr=document.getElementById('track');tr.innerHTML=N.filter(n=>n.rank).sort((a,b)=>a.rank-b.rank).slice(0,12).map(n=>`<a href="${esc(n.u)}" rel="noopener">${esc(n.t)}</a><i></i>`).join('');requestAnimationFrame(()=>tr.style.setProperty('--dur',Math.max(12,(tr.scrollWidth)/110)+'s'));

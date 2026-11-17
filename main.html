@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b0605">
 <link rel="preload" href="logo.webp" as="image">
-<link rel="preload" href="fonts/kohi-baeum.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/a2z/a2z-7Bold.woff2" as="font" type="font/woff2" crossorigin>
 <style>/*
 Copyright (c) 2021 Kil Hyung-jin, with Reserved Font Name Pretendard.
 https://github.com/orioncactus/pretendard
@@ -934,7 +934,7 @@ http://scripts.sil.org/OFL
 	unicode-range: U+20-22, U+27-2a, U+2c-39, U+3a-3b, U+3f, U+41-4e, U+4f-5d, U+61-7b, U+7d, U+a0-a1, U+ab, U+ad-ae, U+b7, U+bb, U+bf, U+2013-2014, U+201c-201d, U+2122, U+ac00, U+ace0, U+ae30, U+b2e4, U+b85c, U+b9ac, U+c0ac, U+c2a4, U+c2dc, U+c774, U+c778, U+c9c0, U+d558;
 }
 </style>
-<style>@font-face{font-family:"KOHIBaeum";src:url(fonts/kohi-baeum.woff) format("woff");font-weight:100 900;font-style:normal;font-display:swap}</style>
+<style>@font-face{font-family:"A2Z";src:url(fonts/a2z/a2z-4Regular.woff2) format("woff2");font-weight:400;font-display:swap}@font-face{font-family:"A2Z";src:url(fonts/a2z/a2z-5Medium.woff2) format("woff2");font-weight:500 600;font-display:swap}@font-face{font-family:"A2Z";src:url(fonts/a2z/a2z-7Bold.woff2) format("woff2");font-weight:700 900;font-display:swap}@font-face{font-family:"KOHIBaeum";src:url(fonts/kohi-baeum.woff) format("woff");font-weight:100 900;font-style:normal;font-display:swap}</style>
 <link rel="preload" href="news.json" as="fetch" crossorigin>
 <title>뉴데이 뉴스</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -949,7 +949,7 @@ http://scripts.sil.org/OFL
 *{box-sizing:border-box;min-width:0;font-synthesis:none}
 body,p,.title,.upd,footer{word-break:keep-all;overflow-wrap:break-word}
 .nw{white-space:nowrap}
-body{margin:0;position:relative;background:var(--bg);color:var(--ink);font:14px/1.6 "KOHIBaeum",system-ui,sans-serif;overflow-x:clip;text-align:center}
+body{margin:0;position:relative;background:var(--bg);color:var(--ink);font:14px/1.6 "A2Z","Pretendard Variable",system-ui,sans-serif;overflow-x:clip;text-align:center}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1040px;margin:0 auto;padding:0 max(5vw,16px)}
 .hero{position:relative;padding:8px 0 44px;overflow:hidden}
@@ -960,7 +960,7 @@ a{color:inherit;text-decoration:none}
 .live i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 10px var(--sky)}
 .brand{margin:14px 0 0;line-height:0}
 .brand img{width:clamp(110px,32vw,160px);height:auto;aspect-ratio:1/1;object-fit:contain;border-radius:50%;filter:drop-shadow(0 0 34px rgba(255,74,28,.45))}
-.tag{font:500 clamp(13px,3.7vw,17px)/1.65 "Pretendard Variable",Pretendard,system-ui,sans-serif;color:#fff;margin:22px auto 0}
+.tag{font:500 clamp(13px,3.7vw,17px)/1.65 "A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;color:#fff;margin:22px auto 0}
 .contact{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .cl{font:italic 800 15px Montserrat,sans-serif;color:#fff}
 .cm{font:italic 700 15px Montserrat,sans-serif;color:var(--sky)}
@@ -969,28 +969,28 @@ a{color:inherit;text-decoration:none}
 .tag em{font-style:normal;color:var(--sky);white-space:nowrap}
 .ig{display:inline-flex;align-items:center;gap:8px;margin-top:26px;min-height:42px;padding:0 18px;font-size:14px;border-radius:999px;background:linear-gradient(90deg,var(--b),#ff6a3d);color:#fff;font-weight:800;box-shadow:0 10px 30px rgba(255,74,28,.35)}
 .ig svg{width:17px;height:17px}
-.ig,.pbtn,.rk{font-family:Montserrat,"KOHIBaeum",sans-serif;font-style:italic;font-weight:800}
+.ig,.pbtn,.rk{font-family:Montserrat,"A2Z","Pretendard Variable",sans-serif;font-style:italic;font-weight:800}
 .ig:focus-visible,.chip:focus-visible,.share:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
-h2{font:italic 900 clamp(42px,12vw,64px)/1 Montserrat,"KOHIBaeum",sans-serif;margin:0;letter-spacing:-.02em;text-transform:uppercase}
-.upd{color:var(--mut);font:400 12.5px/1.7 "Pretendard Variable",Pretendard,system-ui,sans-serif;margin:4px 0 22px}
+h2{font:italic 900 clamp(42px,12vw,64px)/1 Montserrat,"A2Z","Pretendard Variable",sans-serif;margin:0;letter-spacing:-.02em;text-transform:uppercase}
+.upd{color:var(--mut);font:400 12.5px/1.7 "A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;margin:4px 0 22px}
 .chips{display:flex;justify-content:center;flex-wrap:nowrap;gap:6px;margin:0 auto 28px;overflow-x:auto;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;min-height:42px;padding:0 clamp(12px,3.6vw,18px);border-radius:999px;border:1px solid var(--line);background:var(--glass);color:var(--ink);font:600 14px "Pretendard Variable",Pretendard,system-ui,sans-serif;cursor:pointer}
+.chip{flex:none;min-height:42px;padding:0 clamp(12px,3.6vw,18px);border-radius:999px;border:1px solid var(--line);background:var(--glass);color:var(--ink);font:600 14px "A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;cursor:pointer}
 .chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .top{display:block;position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/3;max-height:560px;width:100%;border:1px solid var(--line);margin-bottom:18px}
 @media(min-width:760px){.top{aspect-ratio:16/9}}
 .top .ph{position:absolute;inset:0}
 .top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(11,6,5,.55) 55%,rgba(11,6,5,.96))}
 .top .txt{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:24px clamp(18px,5vw,48px) 26px}
-.top .title{font-size:clamp(19px,4.8vw,28px);line-height:1.35;text-wrap:balance}
+.top .title{font-size:clamp(18px,4.5vw,26px);line-height:1.35;text-wrap:balance}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px}
 .card{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);transition:transform .2s,border-color .2s}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,138,92,.45)}
 .card .ph{position:relative;aspect-ratio:16/10}
-.rk{position:absolute;left:12px;top:12px;z-index:2;min-width:38px;height:30px;padding:0 10px;border-radius:999px;background:rgba(11,6,5,.78);backdrop-filter:blur(6px);color:var(--pastel);font:italic 800 15px/30px Montserrat,"KOHIBaeum",sans-serif}
+.rk{position:absolute;left:12px;top:12px;z-index:2;min-width:38px;height:30px;padding:0 10px;border-radius:999px;background:rgba(11,6,5,.78);backdrop-filter:blur(6px);color:var(--pastel);font:italic 800 15px/30px Montserrat,"A2Z","Pretendard Variable",sans-serif}
 .top .rk{left:18px;top:18px}
 .ph{display:block;background:linear-gradient(135deg,#2a0d06,#7a1e0a 60%,#ff4a1c);overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.ph b{display:grid;place-items:center;height:100%;font:800 34px "KOHIBaeum",sans-serif;color:rgba(255,255,255,.22)}
+.ph b{display:grid;place-items:center;height:100%;font:800 34px "A2Z","Pretendard Variable",sans-serif;color:rgba(255,255,255,.22)}
 .body{padding:18px 20px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;flex:1}
 .cat{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:800;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 35%,transparent)}
 .title{font-weight:800;font-size:16px;line-height:1.45;text-wrap:balance;display:block}
@@ -1001,10 +1001,10 @@ h2{font:italic 900 clamp(42px,12vw,64px)/1 Montserrat,"KOHIBaeum",sans-serif;mar
 .share svg{width:20px;height:20px}
 .top .meta{color:#c5cfe6}
 .join{margin:80px auto 0;padding:48px 18px;border-radius:32px;position:relative;overflow:hidden;border:1px solid var(--line);background:radial-gradient(100% 120% at 50% 0,rgba(255,74,28,.32),transparent 70%),#140806}
-.join h3{font:italic 900 clamp(28px,7vw,44px)/1.05 Montserrat,"KOHIBaeum",sans-serif;margin:0;text-transform:uppercase}
+.join h3{font:italic 900 clamp(28px,7vw,44px)/1.05 Montserrat,"A2Z","Pretendard Variable",sans-serif;margin:0;text-transform:uppercase}
 .join p{color:var(--mut);font-size:14px;line-height:1.7;margin:14px auto 0}
 footer{padding:56px 0 64px;color:var(--mut);font-size:12px;line-height:1.8}
-footer strong{display:block;font:italic 900 22px Montserrat,"KOHIBaeum",sans-serif;color:var(--ink);margin-bottom:6px;letter-spacing:-.03em}
+footer strong{display:block;font:italic 900 22px Montserrat,"A2Z","Pretendard Variable",sans-serif;color:var(--ink);margin-bottom:6px;letter-spacing:-.03em}
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--bg);font-weight:800;padding:12px 20px;border-radius:999px;transition:.25s;pointer-events:none;z-index:9}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .empty{color:var(--mut);padding:40px 0}
@@ -1013,41 +1013,41 @@ footer strong{display:block;font:italic 900 22px Montserrat,"KOHIBaeum",sans-ser
 .rn{font:italic 900 22px/1 Montserrat,sans-serif;color:var(--sky);text-align:center}
 .rthumb{width:66px;height:48px;border-radius:9px;overflow:hidden;background:#2a1a16;display:block}
 .rthumb img,.ri img{width:100%;height:100%;object-fit:cover;display:block}
-.rtt{font-weight:800;font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all}
-.rmeta{font:400 11.5px/1.4 "Pretendard Variable",Pretendard,sans-serif;color:var(--mut);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dl{font:700 11px "Pretendard Variable",Pretendard,sans-serif;white-space:nowrap;min-width:30px;text-align:right}
+.rtt{font-weight:800;font-size:14.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all}
+.rmeta{font:400 11.5px/1.4 "A2Z","Pretendard Variable",Pretendard,sans-serif;color:var(--mut);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dl{font:700 11px "A2Z","Pretendard Variable",Pretendard,sans-serif;white-space:nowrap;min-width:30px;text-align:right}
 .dl.up{color:#7ee0b0}.dl.dn{color:#8a7f7b}.dl.nw{color:#ffd166}
 .secs{text-align:left}
 .sec{margin-top:34px}
 .shd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.shd h3{font:800 19px "KOHIBaeum",sans-serif;margin:0;display:flex;align-items:center;gap:9px}
+.shd h3{font:800 19px "A2Z","Pretendard Variable",sans-serif;margin:0;display:flex;align-items:center;gap:9px}
 .shd h3::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}
-.more{background:none;border:0;color:var(--sky);font:600 13px "Pretendard Variable",Pretendard,sans-serif;cursor:pointer;min-height:40px;padding:0 4px}
+.more{background:none;border:0;color:var(--sky);font:600 13px "A2Z","Pretendard Variable",Pretendard,sans-serif;cursor:pointer;min-height:40px;padding:0 4px}
 .more:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * max(5vw,16px));padding:0 max(5vw,16px) 6px;scroll-padding:0 max(5vw,16px)}
 .rail::-webkit-scrollbar{display:none}
 .rc{flex:none;width:min(64vw,250px);scroll-snap-align:start;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);display:flex;flex-direction:column}
 .ri{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#2a0d06,#7a1e0a);overflow:hidden;display:block}
 .rb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
-.rb .rtt{-webkit-line-clamp:3;font-size:14px}
+.rb .rtt{-webkit-line-clamp:3;font-size:13.5px}
 .sec.open .rail{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));overflow:visible;margin:0;padding:0}
 .sec.open .rc{width:auto}
-.title,.rtt,.top .title{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;font-weight:700;letter-spacing:-.01em}
-.meta,.top .meta{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;font-weight:600}
-.join p,.follow p,footer{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif}
+.title,.rtt,.top .title{font-family:"A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;font-weight:700;letter-spacing:-.02em}
+.meta,.top .meta{font-family:"A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;font-weight:600}
+.join p,.follow p,footer{font-family:"A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif}
 .join p,.follow p{font-weight:500}
-.cat{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif}
+.cat{font-family:"A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif}
 @media(min-width:900px){.rail{margin:0;padding:0 0 6px}}
 
 .bgfx{position:absolute;left:0;right:0;top:0;height:760px;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(70% 36% at 20% 6%,rgba(255,74,28,.85),transparent 72%),radial-gradient(60% 32% at 85% 18%,rgba(255,122,69,.6),transparent 72%),radial-gradient(70% 28% at 50% 42%,rgba(255,176,112,.28),transparent 78%)}.bgfx::before{content:"";position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}.bgfx::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(transparent,var(--bg) 85%)}.clock,.ticker,.hero,main{position:relative;z-index:1}
 .hero .wrap{text-align:left}.hrow{display:flex;justify-content:center;align-items:center;gap:clamp(16px,5vw,28px);margin-top:14px}.hrow .brand{margin:0;flex:none}.hside{display:flex;flex-direction:column;align-items:flex-start}.hside .contact{margin-top:0}.hero .contact{align-items:flex-start}.hero .tag{text-align:center;margin-top:clamp(56px,15vw,84px)}
-.clock{padding:16px 16px 12px;text-align:center;color:#fff;font:500 15px/1.2 "Pretendard Variable",Pretendard,system-ui,sans-serif;white-space:nowrap}
-.ticker{position:relative;z-index:5;overflow:hidden;white-space:nowrap;font:400 14px/1.4 "Pretendard Variable",Pretendard,system-ui,sans-serif;color:#cdbab3;padding:11px 0;background:transparent;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);text-align:left;margin:0 12px}
+.clock{padding:16px 16px 12px;text-align:center;color:#fff;font:500 15px/1.2 "A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;white-space:nowrap}
+.ticker{position:relative;z-index:5;overflow:hidden;white-space:nowrap;font:400 14px/1.4 "A2Z","Pretendard Variable",Pretendard,system-ui,sans-serif;color:#cdbab3;padding:11px 0;background:transparent;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);text-align:left;margin:0 12px}
 .ticker .track{display:inline-block;padding-left:100%;will-change:transform}
 @media(prefers-reduced-motion:no-preference){.ticker .track{animation:tick var(--dur,80s) linear infinite}@keyframes tick{to{transform:translateX(-100%)}}}
 .ticker a{margin-right:22px}.ticker i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--b);box-shadow:0 0 8px var(--b);margin-right:22px;vertical-align:middle}
 .follow{grid-column:1/-1;margin:14px 0;padding:44px 18px 40px;border-radius:28px;border:1.5px solid rgba(255,177,153,.45);background:radial-gradient(90% 120% at 50% 0,rgba(255,138,92,.22),transparent 70%),#140907}
-.follow h3{font:italic 900 clamp(28px,7.5vw,42px)/1.05 Montserrat,"KOHIBaeum",sans-serif;margin:0;text-transform:uppercase}
+.follow h3{font:italic 900 clamp(28px,7.5vw,42px)/1.05 Montserrat,"A2Z","Pretendard Variable",sans-serif;margin:0;text-transform:uppercase}
 .follow p{color:#e2cfc8;font-size:14.5px;line-height:1.7;margin:16px auto 26px}
 .follow em,.join em{font-style:normal;color:var(--pastel);font-weight:800}
 .pbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:0 auto;min-height:44px;padding:0 22px;border-radius:999px;background:var(--pastel);color:#3a1208;font-weight:800;font-size:15px}

@@ -1079,7 +1079,7 @@ footer strong{display:block;font:italic 900 22px Montserrat,"A2Z","Pretendard Va
   <div id="topbox"></div>
   <ol class="rank" id="rank"></ol>
   <h2 style="margin-top:clamp(48px,12vw,72px)">BY CATEGORY</h2>
-  <p class="upd" style="margin-top:8px">분야별 방금 올라온 뉴스</p>
+  <p class="upd" style="margin-top:8px">분야별 지금 가장 많이 본 뉴스</p>
   <div class="secs" id="secs"></div>
 
   <section class="join">
@@ -1119,7 +1119,7 @@ const render=N=>{
   const hasL=N.some(n=>n.lc);const cof=n=>hasL?n.lc:n.c;
   const cats=ORDER.filter(c=>N.some(n=>cof(n)===c));
   secs.innerHTML=cats.map(c=>{const L=N.filter(n=>cof(n)===c).sort((a,b)=>hasL?(a.lrank-b.lrank):((a.crank||999)-(b.crank||999)||(a.rank||999)-(b.rank||999))).slice(0,30);
-    return `<section class="sec" style="--c:${C[c]}"><div class="shd"><h3>${c}</h3><button class="more" aria-expanded="false">전체보기 ›</button></div><div class="rail">${L.map((n,i)=>`<a class="rc" href="${esc(n.u)}" rel="noopener"><span class="ri">${hasL?((Date.now()-new Date(n.at))<600000?'<span class="rk">방금</span>':''):(n.crank?`<span class="rk">${n.crank}위</span>`:'')}${img(n,i,i<3)}</span><span class="rb"><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · <b style="color:var(--sky);font-weight:600">${ago(n.at)}</b></span></span></a>`).join('')}</div></section>`}).join('');
+    return `<section class="sec" style="--c:${C[c]}"><div class="shd"><h3>${c}</h3><button class="more" aria-expanded="false">전체보기 ›</button></div><div class="rail">${L.map((n,i)=>`<a class="rc" href="${esc(n.u)}" rel="noopener"><span class="ri">${hasL?(n.lrank?`<span class="rk">${n.lrank}위</span>`:''):(n.crank?`<span class="rk">${n.crank}위</span>`:'')}${img(n,i,i<3)}</span><span class="rb"><span class="rtt">${esc(n.t)}</span><span class="rmeta">${esc(n.s)} · <b style="color:var(--sky);font-weight:600">${ago(n.at)}</b></span></span></a>`).join('')}</div></section>`}).join('');
 };
 secs.addEventListener('click',e=>{const b=e.target.closest('.more');if(!b)return;const s=b.closest('.sec');const o=s.classList.toggle('open');b.textContent=o?'접기 ‹':'전체보기 ›';b.setAttribute('aria-expanded',o)});
 fetch('news.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(d=>{

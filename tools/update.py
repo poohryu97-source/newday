@@ -160,11 +160,13 @@ def work(vid, out, need_img=True):
 def main(out, n=30, per=15, prev_path=None):
     os.makedirs(os.path.join(out, "img"), exist_ok=True)
     overall = ids_of("sisa")[: n + 8]
-    latest_urls = {c: naver_ids(sid)[: per + 30] for sid, c in NAVER.items()}
+    # 분야별 많이 본 뉴스 (네이트 분야별 랭킹, 조회수 순)
+    CATS = {"pol": "정치", "eco": "경제", "soc": "사회", "int": "국제"}
+    cat_ids = {c: ids_of(sc)[:per] for sc, c in CATS.items()}
     with ThreadPoolExecutor(12) as ex:
         top_res = dict(zip(overall, ex.map(lambda v: work(v, out, True), overall)))
-        jobs = [(u, c) for c, l in latest_urls.items() for u in l]
-        lat_res = list(ex.map(lambda j: naver_work(j[0], j[1], out), jobs))
+        need = [v for l in cat_ids.values() for v in l if v not in top_res]
+        top_res.update(dict(zip(need, ex.map(lambda v: work(v, out, True), need))))
     items, seen_t = {}, set()
     r = 0
     for v in overall:
@@ -173,17 +175,16 @@ def main(out, n=30, per=15, prev_path=None):
             seen_t.add(it["t"]); r += 1
             it["rank"] = r
             items[v] = it
-    # 분야별 최신 기사 (네이버): 최신 시각 순, 사진 있는 기사 우선
-    for c in latest_urls:
-        L = [it for it in lat_res if it and it["c"] == c and it["t"] not in seen_t]
-        L.sort(key=lambda it: it["at"], reverse=True)
-        L = sorted(L[: per + 6], key=lambda it: (0 if it.get("img") else 1, ))[:per] if sum(1 for it in L[:per] if not it.get("img")) > 3 else L[:per]
-        L.sort(key=lambda it: it["at"], reverse=True)
-        for k, it in enumerate(L, 1):
-            seen_t.add(it["t"])
+    for c, l in cat_ids.items():
+        k, seen_c = 0, set()
+        for v in l:
+            it = top_res.get(v)
+            if not it or it["t"] in seen_c:
+                continue
+            seen_c.add(it["t"]); k += 1
             it["lc"] = c
             it["lrank"] = k
-            items[it["u"]] = it
+            items[v] = it
     keep = list(items.values())
     # 지난 업데이트와 비교해 순위 변동(▲▼/NEW) 계산
     prev = {}
@@ -199,7 +200,7 @@ def main(out, n=30, per=15, prev_path=None):
             if "rank" in it:
                 it["delta"] = (prev[it["u"]] - it["rank"]) if it["u"] in prev else "new"
     keep.sort(key=lambda it: (it.get("rank", 999), it.get("lc", ""), it.get("lrank", 999)))
-    data = {"updated": datetime.now(KST).isoformat(timespec="minutes"), "source": "네이트 많이 본 뉴스 + 네이버 분야별 최신뉴스", "items": keep}
+    data = {"updated": datetime.now(KST).isoformat(timespec="minutes"), "source": "네이트 많이 본 뉴스 (종합 + 분야별)", "items": keep}
     json.dump(data, open(os.path.join(out, "news.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     used = {it["img"].split("/")[1] for it in keep if it.get("img")}
     for f in os.listdir(os.path.join(out, "img")):
